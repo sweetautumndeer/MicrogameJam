@@ -17,6 +17,7 @@ public class GameControllerDevelop : GameController
         // So if FindObjectsOfType finds both itself and any other GameControllers, this won't get called.
         if (FindObjectsOfType(typeof(GameController)).Length <= 1)
         {
+            gameDifficulty = gameDifficultySlider;
             StartCoroutine("SimulatePause");
         }
     }
@@ -25,7 +26,6 @@ public class GameControllerDevelop : GameController
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(gameStartDelay);
         Time.timeScale = 1;
-        gameDifficulty = gameDifficultySlider;
         this.SceneInit();
     }
 
