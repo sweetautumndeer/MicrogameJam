@@ -9,6 +9,7 @@ public class EtchASketch_GridHandler : MonoBehaviour {
     [SerializeField] private Tilemap targetTiles;
     [SerializeField] private TileBase black;
     [SerializeField] private TileBase white;
+    private Vector3Int[][] drawings;
 
     [SerializeField] private Transform player;
     private Vector3Int playerPos;
@@ -23,6 +24,19 @@ public class EtchASketch_GridHandler : MonoBehaviour {
         InitTilemap(playerTiles);
         GameController.Instance.SetMaxTimer((4 - GameController.Instance.gameDifficulty) * 5);
         playerPos = new Vector3Int(4, 4, 0);
+        Vector3Int[] vectorArray = {new Vector3Int(1, 3, 0), new Vector3Int(2, 2, 0),
+                                    new Vector3Int(3, 2, 0), new Vector3Int(4, 2, 0),
+                                    new Vector3Int(5, 2, 0), new Vector3Int(6, 2, 0),
+                                    new Vector3Int(7, 3, 0), new Vector3Int(2, 6, 0),
+                                    new Vector3Int(6, 6, 0)};
+
+        Vector3Int[] amogusArray = {new Vector3Int(1, 3, 0), new Vector3Int(2, 2, 0),
+                                    new Vector3Int(3, 2, 0), new Vector3Int(4, 2, 0),
+                                    new Vector3Int(5, 2, 0), new Vector3Int(6, 2, 0),
+                                    new Vector3Int(7, 3, 0), new Vector3Int(2, 6, 0),
+                                    new Vector3Int(6, 6, 0)};
+        drawings[1] = vectorArray;
+        drawings[2] = amogusArray;
     }
 
     // Update is called once per frame
