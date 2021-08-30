@@ -13,6 +13,9 @@ public class EtchASketch_GridHandler : MonoBehaviour {
     [SerializeField] private Transform player;
     private Vector3Int playerPos;
 
+    [SerializeField] private AudioSource move;
+    [SerializeField] private AudioSource flip;
+    [SerializeField] private AudioSource win;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,29 +30,35 @@ public class EtchASketch_GridHandler : MonoBehaviour {
         if (GameController.Instance.timerOn) {
             // Player Input
             if (Input.GetKeyDown(KeyCode.DownArrow) && playerPos.y > 0) {
+                move.Play();
                 player.position = new Vector3(player.position.x, player.position.y - 1, 0);
                 playerPos.y -= 1;
             }
             if (Input.GetKeyDown(KeyCode.UpArrow) && playerPos.y < 8) {
+                move.Play();
                 player.position = new Vector3(player.position.x, player.position.y + 1, 0);
                 playerPos.y += 1;
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow) && playerPos.x > 0) {
+                move.Play();
                 player.position = new Vector3(player.position.x - 1, player.position.y, 0);
                 playerPos.x -= 1;
             }
             if (Input.GetKeyDown(KeyCode.RightArrow) && playerPos.x < 8) {
+                move.Play();
                 player.position = new Vector3(player.position.x + 1, player.position.y, 0);
                 playerPos.x += 1;
             }
 
             if (Input.GetKeyDown("space")) {
+                flip.Play();
                 if (playerTiles.GetTile(playerPos) == black)
                     playerTiles.SetTile(playerPos, white);
                 else
                     playerTiles.SetTile(playerPos, black);
             }
             if (CompareTilemaps()) {
+                win.Play();
                 GameController.Instance.WinGame();
             }
         }
